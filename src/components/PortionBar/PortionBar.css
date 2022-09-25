@@ -1,0 +1,53 @@
+.PortionBar {
+  display: flex;
+  flex-direction: row;
+}
+
+.circles {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 25rem;
+}
+
+.circle-half {
+  width: 1.5rem;
+  height: 3rem;
+}
+
+.circle-left {
+  border-radius: 3rem 0 0 3rem;
+  border: 3px solid black;
+  border-right: none;
+}
+
+.circle-right {
+  border-radius: 0 3rem 3rem 0;
+  border: 3px solid black;
+  border-left: none;
+  margin-right: 5px;
+}
+
+.circle-right:last-child {
+  margin-right: 0;
+}
+
+.circle-bonus {
+  border-color: #777777;
+}
+
+.circle-Protein {
+  background-color: rgb(0, 195, 233);
+}
+
+.circle-Vegetables {
+  background-color: rgb(0, 228, 105);
+}
+
+.circle-Carbs {
+  background-color: rgb(234, 0, 89);
+}
+
+.circle-Fats {
+  background-color: rgb(231, 226, 0);
+}

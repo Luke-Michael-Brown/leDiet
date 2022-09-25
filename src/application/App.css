@@ -1,0 +1,122 @@
+html {
+  font-size: 10px;
+  color: #777777;
+}
+
+@media only screen and (min-width: 450px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (min-width: 500px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+body {
+  font-family: system-ui;
+}
+
+.Container {
+  margin: 1rem;
+}
+
+.Header {
+  font-size: 3rem;
+  font-weight: bold;
+  font-style: underline;
+}
+
+.SubHeader {
+  padding-left: 1rem;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.CategoryImage {
+  margin-right: 1rem;
+  width: 7.3125rem;
+  height: 11rem;
+  background-size: 31.25rem 13rem;
+  background-image: url(https://www.fitwatch.com/files/large/4ef5297e14aa8f5);
+  background-position-y: -1rem;
+}
+
+.CategoryImage-Protein {
+  background-position-x: -1rem;
+}
+
+.CategoryImage-Vegetables {
+  background-position-x: -8.3125rem;
+}
+
+.CategoryImage-Carbs {
+  background-position-x: -15.625rem;
+}
+
+.CategoryImage-Fats {
+  background-position-x: -22.9375rem;
+}
+
+.ControlsContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+}
+
+.ControlsRow {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.FoodRow {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 1rem;
+}
+
+.FoodRow-Protein {
+  background-color: rgb(212, 248, 255);
+}
+
+.FoodRow-Vegetables {
+  background-color: rgb(203, 255, 227);
+}
+
+.FoodRow-Carbs {
+  background-color: rgb(255, 213, 229);
+}
+
+.FoodRow-Fats {
+  background-color: rgb(255, 254, 207);
+}
+
+.FoodIntakeButton {
+  color: black;
+  font-size: 9rem;
+  font-weight: bold;
+  width: 3rem;
+  height: 5rem;
+  font-size: 10rem;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.FoodIntakeButton:active {
+  color: #777777;
+}
+
+.FoodIntakeButton:last-child {
+  margin-left: auto;
+  padding-right: 1rem;
+}
