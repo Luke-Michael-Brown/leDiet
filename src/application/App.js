@@ -10,37 +10,39 @@ const FOOD_CONFIG = [
   {
     name: "Protein",
     perDayMin: 6,
-    perDatMax: 6,
+    perDayMax: 6,
   },
   {
     name: "Vegetables",
     perDayMin: 4,
-    perDatMax: 6,
+    perDayMax: 6,
   },
   {
     name: "Carbs",
     perDayMin: 5,
-    perDatMax: 5,
+    perDayMax: 5,
   },
   {
     name: "Fats",
     perDayMin: 6,
-    perDatMax: 6,
+    perDayMax: 6,
   },
 ];
 
 function App() {
   const [values, setValues, date] = usePersistedState(
     LE_DIET_APP_STATE_V1,
-    () => FOOD_CONFIG.map(() => 0)
+    () => FOOD_CONFIG.map(() => 0),
+    "D"
   );
+
   const incrementValue = useCallback(
     (index) => {
       setValues((oldValues) => {
         const newValues = oldValues.slice();
         newValues[index] = Math.min(
           newValues[index] + 1,
-          FOOD_CONFIG[index].perDatMax * 2
+          FOOD_CONFIG[index].perDayMax * 2
         );
 
         return newValues;
@@ -58,6 +60,10 @@ function App() {
     },
     [setValues]
   );
+  const onResetSelection = useCallback(() => {
+    setValues(FOOD_CONFIG.map(() => 0));
+  }, [setValues]);
+  const isResetDisabled = values.every((value) => value === 0);
 
   return (
     <div className="Container">
@@ -68,35 +74,52 @@ function App() {
         <label>{`For: ${getNiceDate(date)}`}</label>
       </div>
       <div className="FoodContainer">
-        {FOOD_CONFIG.map(({ name, perDayMin, perDatMax }, index) => (
-          <div className={`FoodRow FoodRow-${name}`} key={index}>
-            <div class={`CategoryImage CategoryImage-${name}`} />
-            <div className="ControlsContainer">
-              <div className="ControlsRow">
-                <div
-                  className="FoodIntakeButton"
-                  onClick={() => decrementValue(index)}
-                >
-                  -
-                </div>
-                <div
-                  className="FoodIntakeButton"
-                  onClick={() => incrementValue(index)}
-                >
-                  +
-                </div>
-              </div>
+        {FOOD_CONFIG.map(({ name, perDayMin, perDayMax }, index) => {
+          const isDecrementDisabled = values[index] === 0;
+          const isIncrementDisabled = values[index] === perDayMax * 2;
 
-              <PortionBar
-                value={values[index]}
-                name={name}
-                perDayMin={perDayMin}
-                perDayMax={perDatMax}
-              />
+          return (
+            <div className={`FoodRow FoodRow-${name}`} key={index}>
+              <div class={`CategoryImage CategoryImage-${name}`} />
+              <div className="ControlsContainer">
+                <div className="ControlsRow">
+                  <div
+                    className={`FoodIntakeButton ${
+                      isDecrementDisabled ? "FoodIntakeButton-Disabled" : ""
+                    }`}
+                    onClick={() => decrementValue(index)}
+                  >
+                    -
+                  </div>
+                  <div
+                    className={`FoodIntakeButton ${
+                      isIncrementDisabled ? "FoodIntakeButton-Disabled" : ""
+                    }`}
+                    onClick={() => incrementValue(index)}
+                  >
+                    +
+                  </div>
+                </div>
+
+                <PortionBar
+                  value={values[index]}
+                  name={name}
+                  perDayMin={perDayMin}
+                  perDayMax={perDayMax}
+                />
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
+
+      <button
+        className="ResetButton"
+        onClick={onResetSelection}
+        disabled={isResetDisabled}
+      >
+        Reset Selection
+      </button>
     </div>
   );
 }

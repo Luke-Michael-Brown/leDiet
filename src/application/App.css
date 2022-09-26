@@ -15,24 +15,34 @@ html {
   }
 }
 
+#root {
+  display: flex;
+  justify-content: center;
+}
+
 body {
   font-family: system-ui;
 }
 
 .Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 1rem;
+  max-width: 500px;
 }
 
 .Header {
   font-size: 3rem;
   font-weight: bold;
-  font-style: underline;
+  align-self: flex-start;
 }
 
 .SubHeader {
   padding-left: 1rem;
   font-size: 1.5rem;
   margin-bottom: 1rem;
+  align-self: flex-start;
 }
 
 .CategoryImage {
@@ -98,7 +108,6 @@ body {
 
 .FoodIntakeButton {
   color: black;
-  font-size: 9rem;
   font-weight: bold;
   width: 3rem;
   height: 5rem;
@@ -112,11 +121,36 @@ body {
   text-align: center;
 }
 
+.FoodIntakeButton-Disabled {
+  opacity: 0.5;
+}
+
 .FoodIntakeButton:active {
-  color: #777777;
+  font-size: 12rem;
+}
+
+.FoodIntakeButton-Disabled:active {
+  font-size: 10rem;
+}
+
+.FoodIntakeButton:first-child {
+  padding-left: 0.5rem;
 }
 
 .FoodIntakeButton:last-child {
   margin-left: auto;
   padding-right: 1rem;
+}
+
+.ResetButton {
+  background: none;
+  font-size: 2rem;
+  color: black;
+  border: 2px solid black;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.ResetButton:disabled {
+  opacity: 0.5;
 }
